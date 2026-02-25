@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Découvrir OpenClaw</title>
+    <title>Découvrir OpenClaw - L'Agent Souverain</title>
     <style>
         :root {
             --bg: #0f172a;
@@ -12,6 +12,8 @@
             --text-muted: #94a3b8;
             --primary: #f43f5e; /* Rose/Red */
             --accent: #3b82f6; /* Blue */
+            --code-bg: #020617;
+            --success: #10b981;
         }
 
         body {
@@ -26,12 +28,12 @@
         }
 
         header {
-            background: linear-gradient(to right, #1e293b, #0f172a);
+            background: rgba(15, 23, 42, 0.9);
             border-bottom: 1px solid #334155;
             padding: 1rem 0;
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 100;
             backdrop-filter: blur(10px);
         }
 
@@ -53,13 +55,15 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            color: white;
+            text-decoration: none;
         }
 
         .lobster { font-size: 2rem; }
 
         .hero {
             text-align: center;
-            padding: 80px 20px;
+            padding: 100px 20px;
             background: radial-gradient(circle at top, #334155 0%, var(--bg) 70%);
         }
 
@@ -69,6 +73,14 @@
             background: linear-gradient(to right, #fff, #94a3b8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
         }
 
         .subtitle {
@@ -88,6 +100,7 @@
             font-weight: bold;
             font-size: 1.1rem;
             transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .cta-button:hover {
@@ -107,7 +120,7 @@
             padding: 30px;
             border-radius: 16px;
             border: 1px solid #334155;
-            transition: transform 0.2s;
+            transition: transform 0.2s, border-color 0.2s;
         }
 
         .card:hover {
@@ -124,7 +137,67 @@
         h3 {
             margin-top: 0;
             font-size: 1.5rem;
+            color: white;
         }
+
+        /* Styles pour la section Démo/Exemples */
+        .examples-section {
+            padding: 80px 0;
+            background-color: #0b1120;
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+        }
+
+        .example-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .example-item { grid-template-columns: 1fr; }
+        }
+
+        .terminal {
+            background-color: var(--code-bg);
+            border-radius: 12px;
+            border: 1px solid #334155;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 15px;
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background-color: #ef4444; }
+        .yellow { background-color: #eab308; }
+        .green { background-color: #22c55e; }
+
+        .command-line { margin-bottom: 15px; }
+        .prompt { color: var(--success); font-weight: bold; }
+        .cmd { color: white; }
+        
+        .output { color: var(--text-muted); white-space: pre-wrap; }
+        .output .highlight { color: var(--accent); }
+        .output .success { color: var(--success); }
+
+        .example-text h3 { color: var(--primary); }
+        .example-text p { font-size: 1.1rem; color: var(--text-muted); }
 
         footer {
             margin-top: auto;
@@ -132,6 +205,7 @@
             text-align: center;
             border-top: 1px solid #334155;
             color: var(--text-muted);
+            background-color: var(--bg);
         }
 
         a { color: var(--accent); text-decoration: none; }
@@ -147,20 +221,20 @@
 
     <header>
         <div class="container nav">
-            <div class="logo">
+            <a href="#" class="logo">
                 <span class="lobster">🦞</span> OpenClaw
-            </div>
+            </a>
             <div>
-                <a href="https://github.com/openclaw/openclaw">GitHub</a>
+                <a href="https://github.com/openclaw/openclaw" class="cta-button" style="padding: 8px 20px; font-size: 0.9rem;">GitHub</a>
             </div>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
-            <h1>L'Assistant IA Souverain</h1>
+            <h1>Votre Agent IA Souverain</h1>
             <p class="subtitle">
-                Contrôlez votre système, automatisez vos tâches et boostez votre productivité avec une IA qui vit dans votre terminal.
+                OpenClaw n'est pas un chatbot. C'est un opérateur système. Il vit dans votre terminal, comprend vos outils et exécute vos tâches complexes de manière autonome.
             </p>
             <a href="https://github.com/openclaw/openclaw" class="cta-button">Installer OpenClaw</a>
         </div>
@@ -169,41 +243,125 @@
     <section class="container">
         <div class="grid">
             <div class="card">
+                <span class="icon">🛠️</span>
+                <h3>DevOps & SysAdmin</h3>
+                <p>Surveillez vos serveurs, déployez des conteneurs Docker, analysez les logs d'erreurs et gérez vos configurations Nginx/Apache sans ouvrir la doc.</p>
+            </div>
+            <div class="card">
                 <span class="icon">💻</span>
-                <h3>Natif Terminal</h3>
-                <p>OpenClaw n'est pas un site web, c'est un outil CLI. Il exécute des commandes, gère vos fichiers et configure votre système pour vous.</p>
+                <h3>Coding Partner</h3>
+                <p>Générez des squelettes de projets (React, Python, Go), refactorisez du code legacy, écrivez des tests unitaires et commitez directement sur Git.</p>
             </div>
             <div class="card">
-                <span class="icon">🤖</span>
-                <h3>Intelligence Pure</h3>
-                <p>Connecté aux meilleurs modèles (Gemini, Claude, GPT-4). Il comprend le contexte complexe et peut résoudre des problèmes techniques.</p>
+                <span class="icon">🏡</span>
+                <h3>Domotique & IoT</h3>
+                <p>Interagissez avec vos appareils locaux. Scannez votre réseau, contrôlez vos API Home Assistant ou gérez vos sauvegardes NAS.</p>
             </div>
-            <div class="card">
-                <span class="icon">⚡</span>
-                <h3>Skills Illimités</h3>
-                <p>Extensible via des "Skills". Il peut contrôler Spotify, gérer vos repos GitHub, créer des sites web (comme celui-ci !) et bien plus.</p>
-            </div>
-            <div class="card">
-                <span class="icon">🔒</span>
-                <h3>Privé & Sécurisé</h3>
-                <p>Tout tourne localement ou dans un environnement sandboxé. Vos données restent vôtres. Vous gardez le contrôle total.</p>
-            </div>
-            <div class="card">
-                <span class="icon">🌐</span>
-                <h3>Multi-Canal</h3>
-                <p>Utilisez-le depuis votre terminal, ou discutez avec lui via Telegram, Discord et WhatsApp quand vous êtes en déplacement.</p>
-            </div>
-            <div class="card">
-                <span class="icon">🚀</span>
-                <h3>Automation</h3>
-                <p>Dites simplement "Crée un projet React" ou "Répare mon Docker", et regardez-le travailler en temps réel.</p>
+        </div>
+    </section>
+
+    <!-- Section Exemples Concrets -->
+    <section class="examples-section">
+        <div class="container">
+            <h2>Cas d'Utilisation Réels</h2>
+            
+            <div class="example-grid">
+                
+                <!-- Exemple 1 : Web Dev -->
+                <div class="example-item">
+                    <div class="example-text">
+                        <h3>1. Création de Site Instantanée</h3>
+                        <p>Plus besoin de se battre avec les configurations initiales. Demandez à OpenClaw de créer, configurer et déployer un projet moderne en une phrase.</p>
+                        <p><em>Il choisit les meilleurs outils (Vite, Tailwind), installe les paquets et prépare le déploiement GitHub Pages.</em></p>
+                    </div>
+                    <div class="terminal">
+                        <div class="terminal-header">
+                            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                        </div>
+                        <div class="command-line">
+                            <span class="prompt">user@home:~$</span> <span class="cmd">openclaw "Crée un site portfolio sombre avec Tailwind et déploie-le"</span>
+                        </div>
+                        <div class="output">
+🤖 <span class="highlight">Analysing request...</span>
+<span class="success">✔</span> Création du projet Vite (React)...
+<span class="success">✔</span> Installation de Tailwind CSS & Framer Motion...
+<span class="success">✔</span> Configuration du fichier index.html...
+<span class="success">✔</span> Initialisation du dépôt Git...
+<span class="success">✔</span> Push vers GitHub et activation de Pages...
+
+🚀 <span class="highlight">Site déployé !</span> Accédez-y ici : https://user.github.io/portfolio
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exemple 2 : Maintenance Système -->
+                <div class="example-item">
+                    <div class="terminal">
+                        <div class="terminal-header">
+                            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                        </div>
+                        <div class="command-line">
+                            <span class="prompt">user@server:~$</span> <span class="cmd">openclaw "Mon serveur est lent. Analyse et répare."</span>
+                        </div>
+                        <div class="output">
+🤖 <span class="highlight">Diagnostics en cours...</span>
+- CPU Load: 15% (OK)
+- RAM Usage: 92% (CRITIQUE) ⚠️
+- Disk Space: 45% (OK)
+
+🔍 <span class="highlight">Identification du problème :</span>
+Le processus 'node' (PID 4021) consomme 4GB de RAM. Il semble s'agir d'un script zombie.
+
+❓ Voulez-vous que je termine ce processus ? (O/N)
+> O
+
+<span class="success">✔</span> Processus 4021 tué.
+RAM libérée. Usage actuel : 24%.
+                        </div>
+                    </div>
+                    <div class="example-text">
+                        <h3>2. Maintenance Serveur Autonome</h3>
+                        <p>OpenClaw agit comme un ingénieur système junior. Il sait lire les commandes <code>top</code>, <code>ps</code>, <code>du</code> et interpréter les résultats pour proposer des solutions.</p>
+                        <p>Il ne se contente pas d'afficher des données, il agit (avec votre permission) pour résoudre les incidents.</p>
+                    </div>
+                </div>
+
+                <!-- Exemple 3 : Gestion de Fichiers -->
+                <div class="example-item">
+                    <div class="example-text">
+                        <h3>3. Organisation de Fichiers Intelligente</h3>
+                        <p>Vous avez un dossier "Téléchargements" en désordre ? OpenClaw peut analyser le contenu des fichiers (PDF, Images, Code) et les trier sémantiquement.</p>
+                    </div>
+                    <div class="terminal">
+                        <div class="terminal-header">
+                            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                        </div>
+                        <div class="command-line">
+                            <span class="prompt">user@mac:~$</span> <span class="cmd">openclaw "Trie mon dossier Downloads par type et date"</span>
+                        </div>
+                        <div class="output">
+📂 <span class="highlight">Scanning /Downloads...</span> (143 fichiers trouvés)
+
+Actions proposées :
+1. Créer dossier 'Documents/Factures_2026' pour les PDF financiers.
+2. Déplacer les .jpg et .png dans 'Images/Screenshots'.
+3. Supprimer les installeurs .dmg vieux de plus de 30 jours.
+
+Exécution en cours...
+<span class="success">✔</span> 42 fichiers déplacés.
+<span class="success">✔</span> 12 fichiers supprimés (1.2 GB libérés).
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>Généré par OpenClaw | <a href="https://github.com/openclaw/openclaw">Code Source</a></p>
+            <p>Propulsé par <strong>OpenClaw</strong> | <a href="https://github.com/openclaw/openclaw">Code Source</a> | <a href="#">Documentation</a></p>
+            <p style="font-size: 0.9rem; margin-top: 10px; color: #64748b;">Fait avec ❤️ par un agent IA.</p>
         </div>
     </footer>
 
