@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Découvrir OpenClaw - L'Agent Souverain</title>
+    <title>OpenClaw - Guide & Documentation</title>
     <style>
         :root {
             --bg: #0f172a;
             --card-bg: #1e293b;
+            --card-border: #334155;
             --text: #f8fafc;
             --text-muted: #94a3b8;
-            --primary: #f43f5e; /* Rose/Red */
-            --accent: #3b82f6; /* Blue */
+            --primary: #f43f5e;
+            --accent: #3b82f6;
             --code-bg: #020617;
             --success: #10b981;
+            --warning: #f59e0b;
         }
 
         body {
@@ -22,199 +24,190 @@
             color: var(--text);
             margin: 0;
             line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
         }
 
+        /* Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
         header {
             background: rgba(15, 23, 42, 0.9);
-            border-bottom: 1px solid #334155;
-            padding: 1rem 0;
+            border-bottom: 1px solid var(--card-border);
+            padding: 1.5rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
             backdrop-filter: blur(10px);
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: white;
-            text-decoration: none;
-        }
-
-        .lobster { font-size: 2rem; }
-
+        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        
+        /* Hero */
         .hero {
+            padding: 80px 0;
             text-align: center;
-            padding: 100px 20px;
-            background: radial-gradient(circle at top, #334155 0%, var(--bg) 70%);
+            background: radial-gradient(circle at center, #1e293b 0%, var(--bg) 100%);
         }
 
         h1 {
             font-size: 3.5rem;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #fff, #94a3b8);
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #cbd5e1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 800;
         }
 
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: white;
-        }
-
         .subtitle {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 40px;
+            max-width: 700px;
+            margin: 0 auto 2rem;
         }
 
-        .cta-button {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid rgba(255,255,255,0.1);
+        /* Installation Box */
+        .install-box {
+            background: var(--code-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(244, 63, 94, 0.3);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 60px 0;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 16px;
-            border: 1px solid #334155;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .icon {
-            font-size: 2rem;
-            margin-bottom: 20px;
+        .install-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
             display: block;
         }
 
-        h3 {
-            margin-top: 0;
-            font-size: 1.5rem;
-            color: white;
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--accent);
         }
 
-        /* Styles pour la section Démo/Exemples */
-        .examples-section {
-            padding: 80px 0;
-            background-color: #0b1120;
+        .cmd-block {
+            display: block;
+            color: #e2e8f0;
+            overflow-x: auto;
+            white-space: pre-wrap;
         }
 
-        .example-grid {
+        /* Use Cases Sections */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 4rem 0 2rem;
+        }
+
+        .use-case {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 60px;
-        }
-
-        .example-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1.2fr;
             gap: 40px;
-            align-items: center;
+            margin-bottom: 80px;
+            align-items: flex-start;
         }
 
-        @media (max-width: 768px) {
-            .example-item { grid-template-columns: 1fr; }
+        @media (max-width: 800px) {
+            .use-case { grid-template-columns: 1fr; }
         }
 
+        .use-case-content h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        .use-case-content p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            color: var(--success);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Terminal Simulation */
         .terminal {
-            background-color: var(--code-bg);
-            border-radius: 12px;
-            border: 1px solid #334155;
-            padding: 20px;
+            background: var(--code-bg);
+            border-radius: 10px;
+            border: 1px solid var(--card-border);
+            padding: 0;
             font-family: 'Courier New', Courier, monospace;
             font-size: 0.9rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-            position: relative;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
             overflow: hidden;
         }
 
         .terminal-header {
+            background: #1e293b;
+            padding: 10px 15px;
             display: flex;
             gap: 8px;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #1e293b;
-            padding-bottom: 15px;
+            border-bottom: 1px solid var(--card-border);
         }
 
         .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .red { background-color: #ef4444; }
-        .yellow { background-color: #eab308; }
-        .green { background-color: #22c55e; }
+        .red { background: #ef4444; } .yellow { background: #eab308; } .green { background: #22c55e; }
 
-        .command-line { margin-bottom: 15px; }
+        .terminal-body {
+            padding: 20px;
+            color: #d1d5db;
+        }
+
         .prompt { color: var(--success); font-weight: bold; }
-        .cmd { color: white; }
+        .user-input { color: #fff; font-weight: bold; }
+        .system-msg { color: var(--accent); margin-top: 10px; display: block; }
+        .log-error { color: var(--primary); }
+        .log-info { color: var(--text-muted); }
         
-        .output { color: var(--text-muted); white-space: pre-wrap; }
-        .output .highlight { color: var(--accent); }
-        .output .success { color: var(--success); }
-
-        .example-text h3 { color: var(--primary); }
-        .example-text p { font-size: 1.1rem; color: var(--text-muted); }
-
-        footer {
-            margin-top: auto;
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid #334155;
+        .thinking {
             color: var(--text-muted);
-            background-color: var(--bg);
+            font-style: italic;
+            border-left: 2px solid var(--card-border);
+            padding-left: 10px;
+            margin: 10px 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 0;
+            border-top: 1px solid var(--card-border);
+            margin-top: 4rem;
+            color: var(--text-muted);
         }
 
         a { color: var(--accent); text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        a:hover { color: #fff; }
 
-        @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
-            .grid { grid-template-columns: 1fr; }
-        }
     </style>
 </head>
 <body>
@@ -222,146 +215,159 @@
     <header>
         <div class="container nav">
             <a href="#" class="logo">
-                <span class="lobster">🦞</span> OpenClaw
+                <span style="font-size: 2rem;">🦞</span> OpenClaw
             </a>
-            <div>
-                <a href="https://github.com/openclaw/openclaw" class="cta-button" style="padding: 8px 20px; font-size: 0.9rem;">GitHub</a>
-            </div>
+            <a href="https://github.com/openclaw/openclaw">GitHub →</a>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
-            <h1>Votre Agent IA Souverain</h1>
+            <h1>Documentation & Exemples</h1>
             <p class="subtitle">
-                OpenClaw n'est pas un chatbot. C'est un opérateur système. Il vit dans votre terminal, comprend vos outils et exécute vos tâches complexes de manière autonome.
+                OpenClaw est un agent autonome qui s'installe sur votre machine. 
+                Il a accès à vos fichiers, votre terminal et Internet. Voici comment l'utiliser concrètement.
             </p>
-            <a href="https://github.com/openclaw/openclaw" class="cta-button">Installer OpenClaw</a>
-        </div>
-    </section>
 
-    <section class="container">
-        <div class="grid">
-            <div class="card">
-                <span class="icon">🛠️</span>
-                <h3>DevOps & SysAdmin</h3>
-                <p>Surveillez vos serveurs, déployez des conteneurs Docker, analysez les logs d'erreurs et gérez vos configurations Nginx/Apache sans ouvrir la doc.</p>
-            </div>
-            <div class="card">
-                <span class="icon">💻</span>
-                <h3>Coding Partner</h3>
-                <p>Générez des squelettes de projets (React, Python, Go), refactorisez du code legacy, écrivez des tests unitaires et commitez directement sur Git.</p>
-            </div>
-            <div class="card">
-                <span class="icon">🏡</span>
-                <h3>Domotique & IoT</h3>
-                <p>Interagissez avec vos appareils locaux. Scannez votre réseau, contrôlez vos API Home Assistant ou gérez vos sauvegardes NAS.</p>
+            <div class="install-box">
+                <span class="install-label">Installation rapide (Docker)</span>
+                <code class="cmd-block">docker run -d --name openclaw \
+  -v $(pwd)/workspace:/data/.openclaw/workspace \
+  -p 18789:18789 \
+  ghcr.io/openclaw/openclaw:latest</code>
             </div>
         </div>
     </section>
 
-    <!-- Section Exemples Concrets -->
-    <section class="examples-section">
-        <div class="container">
-            <h2>Cas d'Utilisation Réels</h2>
-            
-            <div class="example-grid">
-                
-                <!-- Exemple 1 : Web Dev -->
-                <div class="example-item">
-                    <div class="example-text">
-                        <h3>1. Création de Site Instantanée</h3>
-                        <p>Plus besoin de se battre avec les configurations initiales. Demandez à OpenClaw de créer, configurer et déployer un projet moderne en une phrase.</p>
-                        <p><em>Il choisit les meilleurs outils (Vite, Tailwind), installe les paquets et prépare le déploiement GitHub Pages.</em></p>
-                    </div>
-                    <div class="terminal">
-                        <div class="terminal-header">
-                            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
-                        </div>
-                        <div class="command-line">
-                            <span class="prompt">user@home:~$</span> <span class="cmd">openclaw "Crée un site portfolio sombre avec Tailwind et déploie-le"</span>
-                        </div>
-                        <div class="output">
-🤖 <span class="highlight">Analysing request...</span>
-<span class="success">✔</span> Création du projet Vite (React)...
-<span class="success">✔</span> Installation de Tailwind CSS & Framer Motion...
-<span class="success">✔</span> Configuration du fichier index.html...
-<span class="success">✔</span> Initialisation du dépôt Git...
-<span class="success">✔</span> Push vers GitHub et activation de Pages...
+    <div class="container">
+        
+        <h2 class="section-title">1. Le Développeur Fullstack</h2>
+        
+        <div class="use-case">
+            <div class="use-case-content">
+                <h3>Génération & Déploiement</h3>
+                <p>Ne perdez plus de temps sur le boilerplate. OpenClaw peut initialiser des projets, installer des dépendances et corriger des erreurs de build.</p>
+                <ul class="feature-list">
+                    <li>Création de projets (React, Vue, Node, Python)</li>
+                    <li>Lecture et écriture de fichiers en temps réel</li>
+                    <li>Exécution de commandes git (init, commit, push)</li>
+                    <li>Débuggage automatique des erreurs de compilation</li>
+                </ul>
+            </div>
+            <div class="terminal">
+                <div class="terminal-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                <div class="terminal-body">
+                    <div><span class="prompt">user@dev:~$</span> <span class="user-input">openclaw "Crée une API Express simple avec un endpoint /status et déploie sur Heroku"</span></div>
+                    
+                    <div class="thinking">Planification : 1. Créer dossier 2. Init npm 3. Code server.js 4. Git push...</div>
+                    
+                    <div class="system-msg">⚡ Exécution des tâches...</div>
+                    <div class="log-info">> mkdir my-api && cd my-api</div>
+                    <div class="log-info">> npm init -y && npm install express</div>
+                    <div class="log-info">> Writing server.js... (Done)</div>
+                    
+                    <div class="system-msg">📝 Contenu de server.js :</div>
+                    <code style="color:#a5b4fc">const express = require('express');
+const app = express();
+app.get('/status', (req, res) => res.json({status: 'OK'}));
+app.listen(process.env.PORT || 3000);</code>
 
-🚀 <span class="highlight">Site déployé !</span> Accédez-y ici : https://user.github.io/portfolio
-                        </div>
-                    </div>
+                    <div class="log-info">> git init && git add . && git commit -m "Init"</div>
+                    <div class="log-info">> heroku create && git push heroku main</div>
+                    
+                    <div class="system-msg" style="color: var(--success)">✅ API déployée avec succès : https://stormy-waters-1234.herokuapp.com</div>
                 </div>
-
-                <!-- Exemple 2 : Maintenance Système -->
-                <div class="example-item">
-                    <div class="terminal">
-                        <div class="terminal-header">
-                            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
-                        </div>
-                        <div class="command-line">
-                            <span class="prompt">user@server:~$</span> <span class="cmd">openclaw "Mon serveur est lent. Analyse et répare."</span>
-                        </div>
-                        <div class="output">
-🤖 <span class="highlight">Diagnostics en cours...</span>
-- CPU Load: 15% (OK)
-- RAM Usage: 92% (CRITIQUE) ⚠️
-- Disk Space: 45% (OK)
-
-🔍 <span class="highlight">Identification du problème :</span>
-Le processus 'node' (PID 4021) consomme 4GB de RAM. Il semble s'agir d'un script zombie.
-
-❓ Voulez-vous que je termine ce processus ? (O/N)
-> O
-
-<span class="success">✔</span> Processus 4021 tué.
-RAM libérée. Usage actuel : 24%.
-                        </div>
-                    </div>
-                    <div class="example-text">
-                        <h3>2. Maintenance Serveur Autonome</h3>
-                        <p>OpenClaw agit comme un ingénieur système junior. Il sait lire les commandes <code>top</code>, <code>ps</code>, <code>du</code> et interpréter les résultats pour proposer des solutions.</p>
-                        <p>Il ne se contente pas d'afficher des données, il agit (avec votre permission) pour résoudre les incidents.</p>
-                    </div>
-                </div>
-
-                <!-- Exemple 3 : Gestion de Fichiers -->
-                <div class="example-item">
-                    <div class="example-text">
-                        <h3>3. Organisation de Fichiers Intelligente</h3>
-                        <p>Vous avez un dossier "Téléchargements" en désordre ? OpenClaw peut analyser le contenu des fichiers (PDF, Images, Code) et les trier sémantiquement.</p>
-                    </div>
-                    <div class="terminal">
-                        <div class="terminal-header">
-                            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
-                        </div>
-                        <div class="command-line">
-                            <span class="prompt">user@mac:~$</span> <span class="cmd">openclaw "Trie mon dossier Downloads par type et date"</span>
-                        </div>
-                        <div class="output">
-📂 <span class="highlight">Scanning /Downloads...</span> (143 fichiers trouvés)
-
-Actions proposées :
-1. Créer dossier 'Documents/Factures_2026' pour les PDF financiers.
-2. Déplacer les .jpg et .png dans 'Images/Screenshots'.
-3. Supprimer les installeurs .dmg vieux de plus de 30 jours.
-
-Exécution en cours...
-<span class="success">✔</span> 42 fichiers déplacés.
-<span class="success">✔</span> 12 fichiers supprimés (1.2 GB libérés).
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
-    </section>
+
+        <h2 class="section-title">2. L'Administrateur Système</h2>
+
+        <div class="use-case">
+            <div class="terminal">
+                <div class="terminal-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                <div class="terminal-body">
+                    <div><span class="prompt">user@server:~$</span> <span class="user-input">openclaw "Le site répond en 502 Bad Gateway. Analyse les logs et répare."</span></div>
+                    
+                    <div class="system-msg">🔍 Investigation en cours...</div>
+                    <div class="log-info">> systemctl status nginx</div>
+                    <div class="log-error">● nginx.service - A high performance web server
+   Active: active (running)</div>
+                    <div class="thinking">Nginx tourne. Vérifions les logs d'erreur.</div>
+                    
+                    <div class="log-info">> tail -n 20 /var/log/nginx/error.log</div>
+                    <div class="log-error">2026/02/24 [error] 123#123: *451 connect() failed (111: Connection refused) while connecting to upstream...</div>
+                    
+                    <div class="thinking">Erreur "Connection refused" vers l'upstream. Le backend Node.js est probablement crashé.</div>
+                    
+                    <div class="log-info">> pm2 status</div>
+                    <div class="log-error">│ app  │ 0  │ stopped  │ 0% │ 0b │</div>
+                    
+                    <div class="system-msg">⚠️ DIAGNOSTIC : Le processus PM2 'app' est arrêté.</div>
+                    <div class="system-msg">Action : Relance du service.</div>
+                    
+                    <div class="log-info">> pm2 restart app</div>
+                    <div class="system-msg" style="color: var(--success)">✅ Service redémarré. Le site devrait être accessible.</div>
+                </div>
+            </div>
+            <div class="use-case-content">
+                <h3>Maintenance & Réparation</h3>
+                <p>OpenClaw agit comme un opérateur niveau 1. Il connaît les commandes Linux standard et sait enchaîner les diagnostics logiques.</p>
+                <ul class="feature-list">
+                    <li>Lecture de logs (Nginx, Apache, Syslog)</li>
+                    <li>Gestion de processus (Kill, Restart, PM2, Systemd)</li>
+                    <li>Vérification des ressources (Disk space, RAM, CPU)</li>
+                    <li>Il demande toujours confirmation pour les actions destructives</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-title">3. Le Chercheur Automatisé</h2>
+
+        <div class="use-case">
+            <div class="use-case-content">
+                <h3>Veille & Synthèse Web</h3>
+                <p>OpenClaw est connecté au web. Il peut effectuer des recherches complexes, lire plusieurs pages et synthétiser l'information dans un fichier Markdown local.</p>
+                <ul class="feature-list">
+                    <li>Recherche multi-sources (Google, Docs officielles)</li>
+                    <li>Extraction de données (Tableaux, Prix, Versions)</li>
+                    <li>Rédaction de rapports au format Markdown</li>
+                    <li>Traduction et résumé de contenus techniques</li>
+                </ul>
+            </div>
+            <div class="terminal">
+                <div class="terminal-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                <div class="terminal-body">
+                    <div><span class="prompt">user@laptop:~$</span> <span class="user-input">openclaw "Trouve les 3 meilleures librairies Python pour le scraping en 2026 et fais un tableau comparatif dans README.md"</span></div>
+                    
+                    <div class="system-msg">🌐 Recherche "best python scraping libraries 2026"...</div>
+                    <div class="thinking">Consultation de 4 résultats... Analyse des features...</div>
+                    
+                    <div class="system-msg">📝 Rédaction du fichier README.md...</div>
+                    
+                    <div class="log-info">> cat README.md</div>
+                    <code style="color:#94a3b8"># Comparatif Scraping Python 2026
+
+| Librairie | Type | JS Support | Note |
+|-----------|------|------------|------|
+| **Crawl4AI** | AI-First | Oui (Chromium) | ⭐⭐⭐⭐⭐ |
+| **Scrapy** | Framework | Non (via plugin) | ⭐⭐⭐⭐ |
+| **BeautifulSoup** | Parser | Non | ⭐⭐⭐ |
+
+**Recommandation :** Utilisez Crawl4AI pour les sites modernes (SPA) et Scrapy pour le scraping de masse.</code>
+                    
+                    <div class="system-msg" style="color: var(--success)">✅ Fichier créé avec succès.</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <footer>
         <div class="container">
-            <p>Propulsé par <strong>OpenClaw</strong> | <a href="https://github.com/openclaw/openclaw">Code Source</a> | <a href="#">Documentation</a></p>
-            <p style="font-size: 0.9rem; margin-top: 10px; color: #64748b;">Fait avec ❤️ par un agent IA.</p>
+            <p>OpenClaw est Open Source.</p>
+            <p><a href="https://github.com/openclaw/openclaw">Voir le code source sur GitHub</a></p>
+            <br>
+            <p style="font-size:0.8rem; color: #475569;">© 2026 OpenClaw Project</p>
         </div>
     </footer>
 
